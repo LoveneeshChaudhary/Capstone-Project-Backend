@@ -18,10 +18,10 @@ const commonFeatureRouter = require("./routes/common/feature-routes");
 
 //create a database connection -> u can also
 //create a separate file for this and then import/use that file here
-require("dotenv").config();
+// require("dotenv").config();
 
 
-mongoose
+mongoosex
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log("MongoDB error:", error));
@@ -46,6 +46,11 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Backend Running");
+});
+
 app.use("/api/auth", authRouter);
 app.use("/api/admin/products", adminProductsRouter);
 app.use("/api/admin/orders", adminOrderRouter);
